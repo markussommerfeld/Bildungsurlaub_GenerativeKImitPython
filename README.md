@@ -41,7 +41,7 @@ pip install uv
 ## Install dependencies
 
 ```bash
-uv sync
+uv sync --link-mode copy
 ```
 
 ## PyTorch special treatment
