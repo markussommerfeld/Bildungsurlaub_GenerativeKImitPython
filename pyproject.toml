@@ -24,4 +24,5 @@ dependencies = [
     "rich>=13.9.4",
     "markdown>=3.7",
     "streamlit>=1.50.0",
+    "sentencepiece>=0.2.1",
 ]
