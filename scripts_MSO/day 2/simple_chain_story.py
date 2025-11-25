@@ -14,7 +14,7 @@ prompt_template = ChatPromptTemplate.from_messages([
             Produziere drei Geschichten zum Thema und gib die Wahrscheinlichkeit an, dass der Nutzer die Geschicht mag.
             Formatiere die Ausgabe als Markdown mit Überschriften und Absätzen.
             Übersetzte die Gschichten ins Japanische"""),
-    ("user", "Character <character>{character}</character>, location <location>{locations}</location>, topic <theme>{theme}</theme>"),
+    ("user", "character <character>{character}</character>, location <location>{locations}</location>, topic <theme>{theme}</theme>"),
 ]) # ("user", "Thema {thema}")
 # Koennte durch ein Front end dropdown oder input Feld eingelesen werden
 # Eingrenzen der User Eingabe und Ausgabe. 
