@@ -7,6 +7,11 @@ from pydantic import BaseModel
 from dotenv import load_dotenv, find_dotenv
 from rich.console import Console
 from rich.markdown import Markdown
+# Create a LANGSMITH_API_KEY in Settings > API Keys
+from langsmith import Client
+client = Client(api_key=LANGSMITH_API_KEY)
+prompt = client.pull_prompt("jgwill/assumption-checker", include_model=True)
+
 load_dotenv(find_dotenv())
 #%% parser
 # This defines the structure of the output!
