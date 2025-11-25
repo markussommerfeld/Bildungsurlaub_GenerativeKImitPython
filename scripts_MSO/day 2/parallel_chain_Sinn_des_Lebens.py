@@ -3,8 +3,8 @@ import os
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel
-from langchain_core.output_parsers import StrOutputParser
-from dotenv import load_dotenv, find_dotenv
+from langchain_core.output_parsers import StrOutputParser # Str. + Leertaste  automatisch mehr anzeigen
+from dotenv import load_dotenv, find_dotenv # hover ueber diese oder andere Modelle dann  gibts mehr infos
 load_dotenv(find_dotenv())
 from rich.console import Console
 from rich.markdown import Markdown
