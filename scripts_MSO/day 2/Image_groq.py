@@ -4,6 +4,8 @@ import base64
 import os
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
+import json
+
 
 # Function to encode the image
 def encode_image(image_path):
@@ -39,7 +41,9 @@ chat_completion = client.chat.completions.create(
             ],
         }
     ],
-    model ="meta-llama/llama-4-maverick-17b-128e-instructt",
+    model ="meta-llama/llama-4-maverick-17b-128e-instruct",
 )
 ##model="meta-llama/llama-4-scout-17b-16e-instruct",
 print(chat_completion.choices[0].message.content)
+
+#json.loads(respondse.content)
