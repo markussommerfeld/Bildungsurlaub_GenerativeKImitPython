@@ -19,6 +19,7 @@ class MovieOutput(BaseModel):
     role_name: list[str]
     actor_name: list[str]
     revenue: int = Field(..., description="The commercial revenue of the movie in million USD")
+    confidence: float = Field(..., description="The confidence score of the answer between 0 and 1")
     
 class MoviesOutput(BaseModel):
     movies: list[MovieOutput]
@@ -53,6 +54,7 @@ for res in res_movies.movies:
     print(res.director)
     print(res.release_year)
     print(res.revenue)
+    print(res.confidence)
     print("---" *20)
 
 #%% Ausgabe
@@ -61,4 +63,4 @@ for res in res_movies.movies:
 #print(res.title)
 
 # this prints the format instructions for the parser
-pprint(parser.get_format_instructions())
+#pprint(parser.get_format_instructions())

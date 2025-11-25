@@ -18,6 +18,7 @@ class WindparkOutput(BaseModel):
     number_of_turbines: str
     list_turbine_type: list[str]
     cumulative_capacity: int = Field(..., description="The cumulative capacity of the windpark in MW")
+    confidence: float = Field(..., description="The confidence score of the answer between 0 and 1")
     
 class WindparksOutput(BaseModel):
     WindPark: list[WindparkOutput]
@@ -55,6 +56,7 @@ for res in res_Windparks.WindPark:
     print(res.number_of_turbines)
     print(res.cumulative_capacity)
     print(res.list_turbine_type)
+    print(res.confidence)
     print("---" *20)
 
 #%% Ausgabe
