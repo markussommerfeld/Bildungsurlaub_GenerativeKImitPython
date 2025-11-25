@@ -3,10 +3,10 @@ import os
 from langchain_ollama import ChatOllama
  
 # %% Modellinstanz erstellen
-model = ChatOllama(model="gemma3:4b")
+model = ChatOllama(model="gemma3:270m")  # Alternativ: "gemma3:2.7b" oder "gemma3:13b"
  
 # %% Anfrage ans Modell schicken
-user_query = "Was ist der beste 17 Zoll Monitor?"
+user_query = "Wieviele E sind in Erdbeere?"
 res = model.invoke(user_query)
  
 # %% Ausgabe ansehen

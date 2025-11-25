@@ -19,7 +19,7 @@ output_tokens = response.model_dump()["usage_metadata"]["output_tokens"]
 total_tokens = response.model_dump()["usage_metadata"]["total_tokens"]
 input_cost = 0.3/1e6
 output_cost = 2.5/1e6
-
+print(f"Die Anfrage kostet {input_tokens * input_cost + output_tokens * output_cost:.6f} USD")
 
 
 # %% Ausgabe ansehen
