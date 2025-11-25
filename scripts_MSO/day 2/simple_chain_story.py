@@ -16,6 +16,7 @@ prompt_template = ChatPromptTemplate.from_messages([
             Übersetzte die Gschichten ins Japanische"""),
     ("user", "character <character>{character}</character>, location <location>{locations}</location>, topic <theme>{theme}</theme>"),
 ]) # ("user", "Thema {thema}")
+# langchain erwartet dann bei invoke die EXAKT gleichen keys wie in den {} Klammern.
 # Koennte durch ein Front end dropdown oder input Feld eingelesen werden
 # Eingrenzen der User Eingabe und Ausgabe. 
 # Thema Promt injection um ausserhalb des System prompts zu agieren.
