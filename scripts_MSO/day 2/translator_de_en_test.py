@@ -21,7 +21,7 @@ from transformers import pipeline
  
 pipe = pipeline(task="translation", model="Helsinki-NLP/opus-mt-de-en")
 # %%
-pipe(["Ich bin ein Berliner.", "Das Wetter ist schön."])
+pipe(["In einem Loch im Boden lebt ein Hobbit.",])
  
 #%% Beispiel: Lückentext
 task = "fill-mask"

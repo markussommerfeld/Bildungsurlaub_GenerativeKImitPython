@@ -69,15 +69,25 @@ pprint(docs_splitted[1000].page_content[:500])
 [len(doc.page_content) for doc in docs_splitted] 
 
 sns.histplot([len(doc.page_content) for doc in docs_splitted], bins=30)
-
 #%% embedding model
 # 1. locally hosted model
 
 from langchain_ollama.embeddings import OllamaEmbeddings
 embedding_model = OllamaEmbeddings(model="embeddinggemma:300m")
-docs_split_texts = [doc.page_content for doc in docs_splitted]
+docs_splitted_texts = [doc.page_content for doc in docs_splitted]
+len(docs_splitted_texts)
 
-embeddings = embedding_model.embed_documents(docs_split_texts[:2])
+# for seeing how far it is:
+# This takes very long! But has be fill data base otherwise it doesn't work properly.
+embeddings = []
+for i, doc in enumerate(docs_splitted_texts):
+    print(round(i/len(docs_splitted_texts)*100,2), "% done")
+    embedding = embedding_model.embed_query(doc)
+    embeddings.append(embedding)
+    
+# 2. embedding in one go!
+# remove [:2] to embed all documents
+# embeddings = embedding_model.embed_documents(docs_splitted_texts[:2])
 #%%
 len(embeddings), len(embeddings[0])
 pprint(embeddings[0][:10])  # print first 10 dimensions of the first embedding
@@ -85,7 +95,7 @@ pprint(embeddings[0][:10])  # print first 10 dimensions of the first embedding
 
 #%% embedding for every document chunk
 
-for i, doc in enumerate(docs_splitted[:10]):
+for i, doc in enumerate(docs_splitted):
     embedding = embedding_model.embed_query(doc.page_content)
     print(f"Document chunk metadata: {doc.metadata}")
     print(f"Embedding (first 10 dimensions): {embedding[:10]}")
@@ -99,10 +109,19 @@ for i, doc in enumerate(docs_splitted[:10]):
 
 from langchain.vectorstores import FAISS
 # hier Faiss ist nur in Arbeitsspeicher, nicht persistent
-vector_store = FAISS.from_documents(docs_splitted[:10], embedding_model)
+vector_store = FAISS.from_documents(docs_splitted, embedding_model)
 #vector_db = FAISS.from_embeddings(docs_splitted)
 
 
 #%% inspect vector store
 print(f"Number of vectors in the store: {vector_store.index.ntotal}")  
+vector_store.save_local(folder_path="Weltliteratur")
 
+#%% try ro retrieve documents
+
+retriver = vector_store.as_retriever(search_type="similarity", search_kwargs={"k":2})
+res = retriver.invoke(input="Wer ist Mephisto?")
+
+for doc in res:
+    print(doc.page_content)
+    print("---"*20)
