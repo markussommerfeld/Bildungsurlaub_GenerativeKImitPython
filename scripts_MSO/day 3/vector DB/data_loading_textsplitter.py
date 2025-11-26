@@ -66,7 +66,6 @@ pprint(docs_splitted[1000].metadata)
 pprint(docs_splitted[1000].page_content[:500])
 
 #%% get chunk size statistics
-
 [len(doc.page_content) for doc in docs_splitted] 
 
 sns.histplot([len(doc.page_content) for doc in docs_splitted], bins=30)
@@ -82,3 +81,28 @@ embeddings = embedding_model.embed_documents(docs_split_texts[:2])
 #%%
 len(embeddings), len(embeddings[0])
 pprint(embeddings[0][:10])  # print first 10 dimensions of the first embedding
+
+
+#%% embedding for every document chunk
+
+for i, doc in enumerate(docs_splitted[:10]):
+    embedding = embedding_model.embed_query(doc.page_content)
+    print(f"Document chunk metadata: {doc.metadata}")
+    print(f"Embedding (first 10 dimensions): {embedding[:10]}")
+    print("-----")
+#%% data storing
+
+# import faiss
+# import numpy as np
+# index = faiss.IndexFlatL2(len(embeddings[0]))  # dimension of the embeddings
+# index.add(np.array(embeddings).astype('float32'))  # add embeddings to the index
+
+from langchain.vectorstores import FAISS
+# hier Faiss ist nur in Arbeitsspeicher, nicht persistent
+vector_store = FAISS.from_documents(docs_splitted[:10], embedding_model)
+#vector_db = FAISS.from_embeddings(docs_splitted)
+
+
+#%% inspect vector store
+print(f"Number of vectors in the store: {vector_store.index.ntotal}")  
+
