@@ -5,8 +5,8 @@
 GEMINI.md
 *.sqlite3
 *.db
-*.faiss
-*.pkl
+
+
 *.bin
 *.json
 *.pickle
