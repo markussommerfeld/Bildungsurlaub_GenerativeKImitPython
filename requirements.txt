@@ -1,5 +1,5 @@
 ipykernel
-langchain-chroma
+
 langchain-community
 langchain-experimental
 langchain-groq

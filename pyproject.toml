@@ -24,4 +24,13 @@ dependencies = [
     "rich>=13.9.4",
     "markdown>=3.7",
     "streamlit>=1.50.0",
+    "sentencepiece>=0.2.1",
+    "pdf2image>=1.17.0",
+    "pillow>=11.0.0",
+    "pytesseract>=0.3.13",
+    "pypdf>=6.4.0",
+    "youtube-transcript-api>=1.2.3",
+    "pytube>=15.0.0",
+    "wikipedia>=1.4.0",
+    "faiss-cpu>=1.13.0",
 ]
