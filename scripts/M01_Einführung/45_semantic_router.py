@@ -58,8 +58,8 @@ def my_prompt_router(input: str):
     
 
 #%% Testing the Router
-# query = "What is the square root of 16?"
-query = "What happened during the french revolution?"
+query = "What is the square root of 16?"
+# query = "What happened during the french revolution?"
 # query = "Who composed the moonlight sonata?"
 chain = my_prompt_router(query)
 print(chain.invoke(query))
